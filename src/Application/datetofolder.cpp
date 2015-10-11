@@ -32,20 +32,22 @@ void DateToFolder::setBaseDir(const QDir &baseDir)
 }
 
 //Creates a folder hierarchy based on the set date.
-bool DateToFolder::create()
+QDir DateToFolder::create()
 {
+    const QDir emptyDir("");
+
     //Check if date object has valid year, month and day.
     if (!m_date.isValid())
     {
         emit error(DateToFolder::Error::InvalidDateFormat);
-        return false;
+        return emptyDir;
     }
 
     //Check if base directory exists.
     if (!m_baseDir.exists())
     {
         emit error(DateToFolder::Error::DirectoryDoesNotExist);
-        return false;
+        return emptyDir;
     }
 
     //Set current dir to base directory.
@@ -54,28 +56,28 @@ bool DateToFolder::create()
     //Create year folder.
     auto year = QString::number(date().year());
     dir = createFolder(year, dir);
-    if (dir == QDir(""))
+    if (dir == emptyDir)
     {
-        return false;
+        return emptyDir;
     }
 
     //Create month folder.
     auto month = QString::number(date().month());
     dir = createFolder(month, dir);
-    if (dir == QDir(""))
+    if (dir == emptyDir)
     {
-        return false;
+        return emptyDir;
     }
 
     //Create day folder.
     auto day = QString::number(date().day());
     dir = createFolder(day, dir);
-    if (dir == QDir(""))
+    if (dir == emptyDir)
     {
-        return false;
+        return emptyDir;
     }
 
-    return true;
+    return dir;
 }
 
 //Navigates to the directory 'directory' and returns the directory navigated to.

@@ -5,7 +5,9 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     parsedate.cpp \
-    datetofolder.cpp
+    datetofolder.cpp \
+    filehelper.cpp \
+    sortfilestofolders.cpp
 
 RESOURCES += qml.qrc
 
@@ -17,5 +19,8 @@ include(deployment.pri)
 
 HEADERS += \
     parsedate.h \
-    datetofolder.h
+    datetofolder.h \
+    filehelper.h \
+    sortfilestofolders.h \
+    enumhelper.h
 

@@ -28,6 +28,7 @@ bool ParseDate::parse()
     //Check if filename is empty.
     if (m_fileName.isEmpty())
     {
+        emit error(ParseDate::Error::FileNameEmpty, QString("Nothing to parse"));
         return false;
     }
 

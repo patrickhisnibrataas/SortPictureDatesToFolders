@@ -17,6 +17,7 @@ public:
         CouldNotNavigateToDirectory,
         CouldNotCreateDirectory
     };
+    Q_ENUM(Error)
 
     DateToFolder();
     DateToFolder(const QDate& date, const QDir& baseDir);
@@ -24,7 +25,7 @@ public:
     void setDate(const QDate &date);
     QDir baseDir() const;
     void setBaseDir(const QDir &baseDir);
-    bool create();
+    QDir create();
 
 private:
     QDate m_date;

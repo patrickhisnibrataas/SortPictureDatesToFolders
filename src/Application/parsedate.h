@@ -16,6 +16,13 @@ class ParseDate : public QObject
 {
     Q_OBJECT
 public:
+    enum class Error
+    {
+        FileNameEmpty
+    };
+    Q_ENUM(Error)
+
+
     ParseDate();
     ParseDate(const QFile& file);
     void setFile(const QFile& file);
@@ -26,6 +33,9 @@ private:
     QString m_fileName;
     QDateTime m_dateTime;
     bool m_status;
+
+signals:
+    void error(ParseDate::Error error, QString errorText = QString(""));
 };
 
 #endif // PARSEDATE_H
